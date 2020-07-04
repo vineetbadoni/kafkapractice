@@ -1,4 +1,4 @@
-package payroll;
+package com.example.payroll;
 
 class EmployeeNotFoundException extends RuntimeException {
 
