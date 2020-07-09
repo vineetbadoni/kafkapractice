@@ -1,6 +1,7 @@
 package com.example.containers;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * dockerfile and use it for the testing.
  *
  */
+@Ignore
 public class CountryAPITest {
     @Autowired
     private MockMvc mockMvc;
