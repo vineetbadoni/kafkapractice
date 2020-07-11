@@ -1,0 +1,41 @@
+version: "2.4"
+services:
+  db:
+    container_name: db
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'arbl'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'password'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - ./my-sql:/var/lib/mysql
+  demo:
+    container_name: demo
+    image: vineetbadoni/demo:latest
+    environment:
+      - EUREKA_HOST=registry
+      - DB_PORT=3306
+      - DB_HOST=db
+      - DB_USER=user
+      - DB_PASSWORD=password
+      - DATABASE=arbl
+      #- _JAVA_OPTIONS=-XX:+UnlockCommercialFeatures -XX:+FlightRecorder -Dcom.sun.management.jmxremote.rmi.port=8192 -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=8192 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false -Djava.rmi.server.hostname=127.0.0.1
+      - _JAVA_OPTIONS=-XX:+FlightRecorder -Dcom.sun.management.jmxremote.rmi.port=8192 -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=8192 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false -Djava.rmi.server.hostname=127.0.0.1
+    ports:
+      - '8192:8192'
+    expose:
+      - '8192'
+    volumes:
+      - .:/external:rw
