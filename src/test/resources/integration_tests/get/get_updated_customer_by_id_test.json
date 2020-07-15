@@ -1,0 +1,52 @@
+{
+    "scenarioName": "Given the customer Updated, then fetch the customer details @@Paul",
+    "steps": [
+        {
+            "name": "put_customer",
+            "url": "/api/abc-bank/customers/AMZON-1003",
+            "operation": "PUT",
+            "request": {
+                "body": {
+                    "name": "Elon",
+                    "age": 25,
+                    "emailId": "emusk@tesla.com"
+                }
+            },
+            "assertions": {
+                "status": 200,
+                "body": {
+                    "id" : "AMZON-1003"
+                }
+            }
+        },
+        {
+            "name": "update_customer",
+            "url": "/api/abc-bank/customers/AMZON-1003",
+            "operation": "PUT",
+            "request": {
+                "body": {
+                    "name": "Elon M"
+                }
+            },
+            "assertions": {
+                "status": 200
+            }
+        },
+        {
+            "name": "fetch_customer",
+            "url": "/api/abc-bank/customers/AMZON-1003",
+            "operation": "GET",
+            "request": {
+            },
+            "assertions": {
+                "status": 200,
+                "body" : {
+                    "id" : "AMZON-1003",
+                    "name" : "Elon M",    //Updated value assertion
+                    "age" : 25,
+                    "emailId" : "emusk@tesla.com"
+                }
+            }
+        }
+    ]
+}
