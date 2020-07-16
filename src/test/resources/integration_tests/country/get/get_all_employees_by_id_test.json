@@ -1,0 +1,27 @@
+{
+  "scenarioName": "Fetch all the Employees",
+  "steps": [
+    {
+      "name": "get_all_employees",
+      "url": "/employees",
+      "operation": "GET",
+      "request": {
+      },
+      "assertions": {
+        "status": 200,
+        "body": [
+          {
+            "id": 1,
+            "name": "Bilbo Baggins",
+            "role": "burglar"
+          },
+          {
+            "id": 2,
+            "name": "Frodo Baggins",
+            "role": "thief"
+          }
+        ]
+      }
+    }
+  ]
+}
